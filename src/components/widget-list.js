@@ -1,20 +1,23 @@
 import React from 'react'
-import HeadingWidget from "./heading-widget";
-import ParaWidget from "./para-widget";
-import ListWidget from "./list-widget";
-import ImageWidget from "./image-widget"
-import LinkWidget from "./link-widget"
+import WidgetComponent from './widget-component'
 
-export default class WidgetList
-  extends React.Component {
-  render() {
-    return(
-      <div>
-      <HeadingWidget/>
-      <ParaWidget/>
-      <ListWidget/>
-      <ImageWidget/>
-      <LinkWidget/>
-      </div>
-    );
-  }}
+const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, moveUp, moveDown}) =>
+    <div>
+        {
+            widgets.map(widget =>
+            <WidgetComponent
+                key = {widget.id}
+                deleteWidget={deleteWidget}
+                updateWidget={updateWidget}
+                moveUp={moveUp}
+                moveDown={moveDown}
+                widget={widget}/>
+            )
+        }
+        <button className="btn btn-default btn-circle"
+        onClick={addWidget}>
+            <i className="fa fa-plus"></i>
+        </button>
+    </div>
+
+export default WidgetList

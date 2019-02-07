@@ -13,11 +13,49 @@
             "topics":[
               {
                 "id": 1,
-                "title": "Topic 123-1-1-1"
+                "title": "Topic 123-1-1-1",
+                "widgets": [
+                  {
+                    "id": 123,
+                    "title": "Heading Widget",
+                    "type": "HEADING",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  },
+                  {
+                    "id": 234,
+                    "title": "Paragraph Widget",
+                    "type": "PARA",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  },
+                  {
+                    "id": 345,
+                    "title": "List Widget",
+                    "type": "LIST",
+                    "text": "default, widget, text"
+                  }
+                ]
               },
               {
                 "id": 2,
-                "title": "Topic 123-1-1-2"
+                "title": "Topic 123-1-1-2",
+                "widgets": [
+                  {
+                    "id": 456,
+                    "title": "Image Widget",
+                    "type": "IMAGE",
+                    "size": 1,
+                    "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg"
+                  },
+                  {
+                    "id": 567,
+                    "title": "Link Widget",
+                    "type": "LINK",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  }
+                ]
               }
             ]
           },
@@ -27,11 +65,49 @@
             "topics":[
               {
                 "id": 3,
-                "title": "Topic 123-1-2-1"
+                "title": "Topic 123-1-2-1",
+                "widgets": [
+                  {
+                    "id": 678,
+                    "title": "Heading Widget",
+                    "type": "HEADING",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  },
+                  {
+                    "id": 789,
+                    "title": "Paragraph Widget",
+                    "type": "PARA",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  },
+                  {
+                    "id": 8910,
+                    "title": "List Widget",
+                    "type": "LIST",
+                    "text": "default, widget, text"
+                  }
+                ]
               },
               {
                 "id": 4,
-                "title": "Topic 123-1-2-2"
+                "title": "Topic 123-1-2-2",
+                "widgets": [
+                  {
+                    "id": 91011,
+                    "title": "Image Widget",
+                    "type": "IMAGE",
+                    "size": 1,
+                    "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg"
+                  },
+                  {
+                    "id": 101112,
+                    "title": "Link Widget",
+                    "type": "LINK",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  }
+                ]
               }
             ]
           }
@@ -47,11 +123,49 @@
             "topics":[
               {
                 "id": 5,
-                "title": "Topic 123-2-1-1"
+                "title": "Topic 123-2-1-1",
+                "widgets": [
+                  {
+                    "id": 111213,
+                    "title": "Heading Widget",
+                    "type": "HEADING",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  },
+                  {
+                    "id": 121314,
+                    "title": "Paragraph Widget",
+                    "type": "PARA",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  },
+                  {
+                    "id": 131415,
+                    "title": "List Widget",
+                    "type": "LIST",
+                    "text": "default, widget, text"
+                  }
+                ]
               },
               {
                 "id": 6,
-                "title": "Topic 123-2-1-2"
+                "title": "Topic 123-2-1-2",
+                "widgets": [
+                  {
+                    "id": 141516,
+                    "title": "Image Widget",
+                    "type": "IMAGE",
+                    "size": 1,
+                    "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg"
+                  },
+                  {
+                    "id": 151617,
+                    "title": "Link Widget",
+                    "type": "LINK",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  }
+                ]
               }
             ]
           },
@@ -61,11 +175,49 @@
             "topics":[
               {
                 "id": 7,
-                "title": "Topic 123-2-2-1"
+                "title": "Topic 123-2-2-1",
+                "widgets": [
+                  {
+                    "id": 161718,
+                    "title": "Heading Widget",
+                    "type": "HEADING",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  },
+                  {
+                    "id": 171819,
+                    "title": "Paragraph Widget",
+                    "type": "PARA",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  },
+                  {
+                    "id": 181920,
+                    "title": "List Widget",
+                    "type": "LIST",
+                    "text": "default, widget, text"
+                  }
+                ]
               },
               {
                 "id": 8,
-                "title": "Topic 123-2-2-2"
+                "title": "Topic 123-2-2-2",
+                "widgets": [
+                  {
+                    "id": 192021,
+                    "title": "Image Widget",
+                    "type": "IMAGE",
+                    "size": 1,
+                    "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg"
+                  },
+                  {
+                    "id": 202122,
+                    "title": "Link Widget",
+                    "type": "LINK",
+                    "size": 1,
+                    "text": "default, widget, text"
+                  }
+                ]
               }
             ]
           }
