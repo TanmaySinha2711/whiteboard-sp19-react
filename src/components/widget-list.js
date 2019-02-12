@@ -1,23 +1,38 @@
 import React from 'react'
 import WidgetComponent from './widget-component'
 
-const WidgetList = ({widgets, addWidget, deleteWidget, updateWidget, moveUp, moveDown}) =>
-    <div>
-        {
+class WidgetList extends React.Component {
+    componentDidMount(){
+        this.props.loadWidgets(this.props.topic.id)
+    }
+    render(){
+        return (
+            <div>
+                {
+                    this.props.widgets.map(widget =>
+                        <WidgetComponent
+                            key={widget.id}
+                            deleteWidget={this.props.deleteWidget}
+                            updateWidget={this.props.updateWidget}
+                            moveUp={this.props.moveUp}
+                            moveDown={this.props.moveDown}
+                            firstWidget={0 === this.props.widgets.indexOf(widget)}
+                            lastWidget={this.props.widgets.length - 1 === this.props.widgets.indexOf(widget)}
+                            widget={widget}/>
+                    )
+                }
+                {/*{
             widgets.map(widget =>
-            <WidgetComponent
-                key = {widget.id}
-                deleteWidget={deleteWidget}
-                updateWidget={updateWidget}
-                moveUp={moveUp}
-                moveDown={moveDown}
-                widget={widget}/>
+                <p>{widget.id}</p>
             )
-        }
-        <button className="btn btn-default btn-circle"
-        onClick={addWidget}>
-            <i className="fa fa-plus"></i>
-        </button>
-    </div>
+        }*/}
+                <button className="btn btn-default btn-circle"
+                        onClick={this.props.addWidget}>
+                    <i className="fa fa-plus"></i>
+                </button>
+            </div>
+        )
 
+    }
+}
 export default WidgetList

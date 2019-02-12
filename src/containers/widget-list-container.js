@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import WidgetList from '../components/widget-list'
+import CourseService from "../services/course-service";
 
 const stateToPropertyMapper = (state, previewWidgets) => ({
     previewWidgets: previewWidgets.previewWidgets,
@@ -12,6 +13,14 @@ const dispatchToPropertyMapper = dispatch => ({
         dispatch({
             type:'FIND_ALL_WIDGETS'
         }),
+    loadWidgets: topicId => {
+        let widgets = (new CourseService()).findWidgetsByTopic(topicId)
+        console.log(topicId)
+        dispatch({
+            type: 'LOAD_WIDGETS',
+            widgets: widgets
+        })
+    },
     deleteWidget: widget =>
         dispatch({
             type: 'DELETE_WIDGET',

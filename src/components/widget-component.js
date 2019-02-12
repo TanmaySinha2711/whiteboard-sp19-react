@@ -5,7 +5,7 @@ import ListWidget from "./list-widget";
 import ImageWidget from "./image-widget"
 import LinkWidget from "./link-widget"
 
-const WidgetComponent = ({widget, deleteWidget, updateWidget, moveUp, moveDown}) =>
+const WidgetComponent = ({widget, deleteWidget, updateWidget, moveUp, moveDown, firstWidget, lastWidget}) =>
     <div>
         <div className = "row p-2">
             <div className = "col-md-3">
@@ -16,11 +16,16 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget, moveUp, moveDown})
             <div className = "col-md-2">
                 <div className = "p-2">
                     <button className="btn btn-primary"
-                            onClick={() => {moveUp(widget)}}>
+                            onClick={() => {moveUp(widget)}}
+                            style={{visibility: firstWidget
+                                    ? 'hidden': ''}}>
                         <i className="fa fa-chevron-up" aria-hidden="true"></i>
                     </button>
                     <button className="btn btn-primary"
-                            onClick={() => {moveDown(widget)}}>
+                            onClick={() => {moveDown(widget)}}
+                            style={{visibility: lastWidget
+                                    ? 'hidden': ''}}
+                            >
                         <i className="fa fa-chevron-down" aria-hidden="true"></i>
                     </button>
                 </div>

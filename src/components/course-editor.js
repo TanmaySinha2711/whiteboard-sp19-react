@@ -158,7 +158,9 @@ class CourseEditor extends React.Component {
                             topicTitleChanged={this.topicTitleChanged}/>
                         <PreviewBar/>
                         <Provider store={store}>
-                            <WidgetListContainer previewWidgets={this.state.widgets}/>
+                            <WidgetListContainer previewWidgets={this.state.widgets}
+                                                 key={this.state.topic.id}
+                            topic = {this.state.topic}/>
                         </Provider>
                         {/*<WidgetList/>*/}
                     </div>

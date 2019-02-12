@@ -20,20 +20,23 @@
                     "title": "Heading Widget",
                     "type": "HEADING",
                     "size": 1,
-                    "text": "default, widget, text"
+                    "text": "default, widget, text",
+                    "hidden": true
                   },
                   {
                     "id": 234,
                     "title": "Paragraph Widget",
                     "type": "PARA",
                     "size": 1,
-                    "text": "default, widget, text"
+                    "text": "default, widget, text",
+                    "hidden": false
                   },
                   {
                     "id": 345,
                     "title": "List Widget",
                     "type": "LIST",
-                    "text": "default, widget, text"
+                    "text": "default, widget, text",
+                    "hidden": false
                   }
                 ]
               },
@@ -46,14 +49,16 @@
                     "title": "Image Widget",
                     "type": "IMAGE",
                     "size": 1,
-                    "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg"
+                    "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg",
+                    "hidden": true
                   },
                   {
                     "id": 567,
                     "title": "Link Widget",
                     "type": "LINK",
                     "size": 1,
-                    "text": "default, widget, text"
+                    "text": "default, widget, text",
+                    "hidden": false
                   }
                 ]
               }
@@ -72,20 +77,23 @@
                     "title": "Heading Widget",
                     "type": "HEADING",
                     "size": 1,
-                    "text": "default, widget, text"
+                    "text": "default, widget, text",
+                    "hidden": true
                   },
                   {
                     "id": 789,
                     "title": "Paragraph Widget",
                     "type": "PARA",
                     "size": 1,
-                    "text": "default, widget, text"
+                    "text": "default, widget, text",
+                    "hidden": false
                   },
                   {
                     "id": 8910,
                     "title": "List Widget",
                     "type": "LIST",
-                    "text": "default, widget, text"
+                    "text": "default, widget, text",
+                    "hidden": false
                   }
                 ]
               },
@@ -98,14 +106,16 @@
                     "title": "Image Widget",
                     "type": "IMAGE",
                     "size": 1,
-                    "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg"
+                    "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg",
+                    "hidden": true
                   },
                   {
                     "id": 101112,
                     "title": "Link Widget",
                     "type": "LINK",
                     "size": 1,
-                    "text": "default, widget, text"
+                    "text": "default, widget, text",
+                    "hidden": false
                   }
                 ]
               }
