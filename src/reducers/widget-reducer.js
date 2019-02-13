@@ -1,9 +1,7 @@
 import CourseService from '../services/course-service'
 import WidgetService from '../services/widget-service'
 
-let cs = new CourseService()
-//let ws = new WidgetService()
-//let widgets2 = ws.findAllWidgets()
+let cs = CourseService.instance
 const widgets = {
     widgets: [
         {

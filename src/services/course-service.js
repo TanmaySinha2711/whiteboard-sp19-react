@@ -1,49 +1,56 @@
-import courses from './courses.json'
-
-let singleton = null
+let singleton = Symbol()
 
 export default class CourseService {
-    constructor() {
-        if(!singleton){
-            singleton = this
-        }
-        this.courses = courses;
+    constructor(singletonToken) {
+        if (singleton !== singletonToken)
+            throw new Error('Cannot instantiate directly.');
+    }
+    static get instance() {
+        if(!this[singleton])
+            this[singleton] = new CourseService(singleton);
+        return this[singleton]
     }
 
-    addCourse = course => {
-        const date = new Intl.DateTimeFormat('en-US',
-            {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'})
-            .format(Date.now());
+    addCourse(course) {
+        return fetch("http://localhost:8080/api/courses", {
+            body: JSON.stringify(course),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST'
+        }).then(function (response) {
+            return response.json();
+        })}
 
-        if(course === null) {
-            course = {
-                id: date,
-                title: 'New Course'
-            }
-        }
-        this.courses.push(course)
-        return this.courses
+    findCoursesById(courseId) {
+        return fetch("http://localhost:8080/api/courses" + '/' + courseId)
+            .then(function(response){
+                return response.json();
+            });
     }
 
-    findCourseById = courseId =>
-        this.courses = this.courses.find(
-            course => course.id === courseId
-        )
+    findAllCourses() {
+        return fetch("http://localhost:8080/api/courses")
+            .then(function (response) {
+                return response.json()
+            })
+    }
 
-    findAllCourses = () =>
-        this.courses;
+    deleteCourse(courseId) {
+        return fetch("http://localhost:8080/api/courses" + '/' + courseId,
+            {
+                method: 'DELETE'
+            }).then(function (response) {
+            return response;
+        })
+    }
 
-    deleteCourse = deleteCourse =>
-        this.courses = this.courses.filter(
-            course => course.id !== deleteCourse.id
-        )
-
-    findWidgetsByTopic = (topicId) => {
+   /* findWidgetsByTopic = (topicId) => {
         let widgets = []
         for(let i = 0; i < this.courses[0].modules.length; i++)
             for(let j = 0; j < this.courses[0].modules[i].lessons.length; j++)
                 for(let k = 0; k < this.courses[0].modules[i].lessons[j].topics.length; k++)
                         if(this.courses[0].modules[i].lessons[j].topics[k].id === topicId)
                             return this.courses[0].modules[i].lessons[j].topics[k].widgets
-    }
+    }*/
 }

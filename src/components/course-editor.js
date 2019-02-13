@@ -16,11 +16,14 @@ const store = createStore(WidgetReducer);
 
 class CourseEditor extends React.Component {
     constructor(props) {
-        super(props)
-        this.courseService = new CourseService()
-        const courseId = parseInt(props.match.params.id)
-        const course = this.courseService.findCourseById(courseId)
-        this.state = {
+        super(props);
+        this.courseService = CourseService.instance;
+        this.state = {courseId: '',
+            courseTitle:''
+        };
+        this.selectCourse = this.selectCourse.bind(this);
+        this.setCourseTitle = this.setCourseTitle.bind(this);
+        /*this.state = {
             course: course,
             module: course.modules[0],
             lesson: course.modules[0].lessons[0],
@@ -36,10 +39,31 @@ class CourseEditor extends React.Component {
             newTopic:{
                 title:'Default Topic'
             }
-        }
+        }*/
     }
 
-    createLesson = (event) => {
+    componentDidMount() {
+        this.selectCourse(this.props.match.params.courseId);
+        this.setCourseTitle(this.props.match.params.courseTitle);
+    }
+
+    selectCourse(courseId){
+        this.setState({
+            courseId: courseId
+        })
+    }
+
+    async setCourseTitle(courseId){
+        let title = await Promise.resolve(this.courseService.findCoursesById(courseId))
+            .then(function(response){
+                return response.title;
+
+            });
+        console.log(title)
+        this.setState({courseTitle: title });
+    }
+
+/*    createLesson = (event) => {
         this.setState(
             {lessons: [
                     ...this.state.lessons,
@@ -93,7 +117,7 @@ class CourseEditor extends React.Component {
         this.setState({
             topic: topic,
             widgets:topic.widgets
-        })
+        })*/
 
     render() {
         return (
@@ -102,7 +126,7 @@ class CourseEditor extends React.Component {
                     <a className="navbar-brand" href="#">
                         <Link to="/"><i className="fa fa-window-close" aria-hidden="true"></i></Link>
                     </a>
-                    <a className="navbar-brand" href="#">Course Editor: {this.state.course.title}</a>
+                    <a className="navbar-brand" href="#">Course Editor: {this.state.courseTitle}</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -138,14 +162,13 @@ class CourseEditor extends React.Component {
                 </nav>
 
                 <div className="row">
-                    <div className="col-3">
+                    {<div className="col-3">
                         <ModuleList
-                            modules={this.state.course.modules}
-                            selectModule={this.selectModule}
+                            courseId={this.state.courseId}
                         />
-                    </div>
+                    </div>}
                     <div className="col-8">
-                        <LessonTabs
+                        {/*<LessonTabs
                             lessons={this.state.lessons}
                             selectLesson={this.selectLesson}
                             createLesson={this.createLesson}
@@ -155,14 +178,14 @@ class CourseEditor extends React.Component {
                             topics={this.state.topics}
                             selectTopic={this.selectTopic}
                             createTopic={this.createTopic}
-                            topicTitleChanged={this.topicTitleChanged}/>
+                            topicTitleChanged={this.topicTitleChanged}/>*/}
                         <PreviewBar/>
-                        <Provider store={store}>
+                       {/* <Provider store={store}>
                             <WidgetListContainer previewWidgets={this.state.widgets}
                                                  key={this.state.topic.id}
                             topic = {this.state.topic}/>
                         </Provider>
-                        {/*<WidgetList/>*/}
+                        <WidgetList/>*/}
                     </div>
                 </div>
             </div>

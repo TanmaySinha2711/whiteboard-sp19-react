@@ -12,7 +12,7 @@ const CourseCard = ({course, deleteCourse}) =>
       <Link className="btn btn-dark" to={`/course/${course.id}`}>
         <i className="fa fa-pencil" aria-hidden="true"/>
       </Link>
-      <a onClick={() => deleteCourse(course)}
+      <a onClick={() => deleteCourse(course.id)}
          className="btn btn-danger">
        <i className="fa fa-close" aria-hidden="true"/>
      </a>

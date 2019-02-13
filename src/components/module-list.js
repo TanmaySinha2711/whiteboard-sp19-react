@@ -1,32 +1,55 @@
-import React from 'react'
+import React from 'react';
 import ModuleListItem from "./module-list-item";
+import CourseService from "../services/course-service";
+import ModuleService from "../services/module-service";
 
 class ModuleList extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state = {
-      module: { title: 'Default' },
-      modules: this.props.modules
+    this.titleChanged = this.titleChanged.bind(this);
+    this.createModule = this.createModule.bind(this);
+    this.setCourseId = this.setCourseId.bind(this);
+    this.moduleService = ModuleService.instance;
+    this.courseService = CourseService.instance;
+
+    this.state = {courseId: '',
+      module: {title: ''},
+      date:'',
+      modules: [
+      ]
     };
   }
 
-  createModule = () => {
-    this.setState(
-      {
-        modules: [
-          ...this.state.modules,
-          this.state.module
-        ]
-      }
-    )
+  setCourseId(courseId){
+    this.setState({courseId:courseId})
   }
-  titleChanged = (event) => {
-    this.setState(
-      {
-        module: {title: event.target.value}
-      });
+
+  titleChanged(event){
+    console.log(event.target.value);
+    this.setState({module:{title: event.target.value}});
   }
+
+  findAllModulesForCourse(courseId){
+
+  }
+
+  componentDidMount(){
+    this.setCourseId(this.props.courseId)
+  }
+
+  componentWillReceiveProps(newProps){
+    this.setCourseId(newProps.courseId);
+    this.findAllModulesForCourse(newProps.courseId)
+  }
+
+  createModule(){
+    this.moduleService.createModule(this.state.courseId,this.state.module)
+        .then(()=> {
+          this.findAllModulesForCourse(this.state.courseId);
+        });
+  }
+
   render() {
     return(
       <div>
@@ -45,7 +68,6 @@ class ModuleList extends React.Component {
               (module) => {
                 return (
                   <ModuleListItem
-                    selectModule={this.props.selectModule}
                     key={module.id}
                     module={module}/>
                 )

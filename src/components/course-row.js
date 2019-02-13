@@ -1,11 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
-var n =  new Date();
-var y = n.getFullYear();
-var m = n.getMonth() + 1;
-var d = n.getDate();
-
 const CourseRow = ({course, deleteCourse}) =>
   <div class="row">
     <div class="col-6">
@@ -18,7 +13,7 @@ const CourseRow = ({course, deleteCourse}) =>
       {course.id}
     </div>
     <div class="col-2">
-      <a onClick = {() => deleteCourse(course)}>
+      <a onClick = {() => deleteCourse(course.id)}>
         <i class="fa fa-times"></i>
       </a>
     </div>

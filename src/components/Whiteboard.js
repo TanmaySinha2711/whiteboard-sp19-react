@@ -8,19 +8,43 @@ import CourseService from "../services/course-service";
 class WhiteBoard extends Component {
   constructor() {
     super();
-    this.courseService = new CourseService()
+    this.courseService = CourseService.instance
     this.state = {
-      courses: this.courseService.findAllCourses()
+      courses: [],
+      newCourse:{
+        "id":80,
+        "title": "new course",
+        "modules": null
+      }
     }
   }
-  deleteCourse = course =>
-    this.setState({
-      courses: this.courseService.deleteCourse(course)
-    })
+  componentDidMount() {
+    this.courseService.findAllCourses()
+        .then(courses => this.setState({
+          courses:courses
+        }))
+  }
+
+  findAllCourses(){
+    this.courseService.findAllCourses()
+        .then(courses => {
+          this.setState({
+            courses: courses
+          })
+        })
+  }
+  deleteCourse = courseId =>
+      this.courseService.deleteCourse(courseId)
+          .then(() => {
+            this.findAllCourses()
+          })
+
   addCourse = () =>
-    this.setState({
-      courses: this.courseService.addCourse(null)
-    })
+    this.courseService.addCourse(this.state.newCourse)
+        .then(() => {
+          this.findAllCourses();
+        })
+
   render() {
     return (
       <div>
