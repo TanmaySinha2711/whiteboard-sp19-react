@@ -26,15 +26,15 @@ class ModuleList extends React.Component {
   }
 
   titleChanged(event){
-    console.log(event.target.value);
     this.setState({module:{title: event.target.value}});
   }
 
   findAllModulesForCourse(courseId){
-
+    this.moduleService.findAllModulesForCourse(courseId)
   }
 
   componentDidMount(){
+    console.log(this.props.courseId)
     this.setCourseId(this.props.courseId)
   }
 

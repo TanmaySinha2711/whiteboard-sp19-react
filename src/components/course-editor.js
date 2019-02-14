@@ -18,8 +18,8 @@ class CourseEditor extends React.Component {
     constructor(props) {
         super(props);
         this.courseService = CourseService.instance;
-        this.state = {courseId: '',
-            courseTitle:''
+        this.state = {id: '',
+            title:''
         };
         this.selectCourse = this.selectCourse.bind(this);
         this.setCourseTitle = this.setCourseTitle.bind(this);
@@ -43,8 +43,9 @@ class CourseEditor extends React.Component {
     }
 
     componentDidMount() {
-        this.selectCourse(this.props.match.params.courseId);
-        this.setCourseTitle(this.props.match.params.courseTitle);
+        console.log()
+        this.selectCourse(this.props.match.params.id);
+        this.setCourseTitle(this.props.match.params.title);
     }
 
     selectCourse(courseId){
@@ -53,14 +54,14 @@ class CourseEditor extends React.Component {
         })
     }
 
-    async setCourseTitle(courseId){
-        let title = await Promise.resolve(this.courseService.findCoursesById(courseId))
+    async setCourseTitle(id){
+        let title = await Promise.resolve(this.courseService.findCoursesById(id))
             .then(function(response){
                 return response.title;
 
             });
         console.log(title)
-        this.setState({courseTitle: title });
+        this.setState({title: title });
     }
 
 /*    createLesson = (event) => {
@@ -126,7 +127,7 @@ class CourseEditor extends React.Component {
                     <a className="navbar-brand" href="#">
                         <Link to="/whiteboard"><i className="fa fa-window-close" aria-hidden="true"></i></Link>
                     </a>
-                    <a className="navbar-brand" href="#">Course Editor: {this.state.courseTitle}</a>
+                    <a className="navbar-brand" href="#">Course Editor: {this.state.title}</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -164,7 +165,7 @@ class CourseEditor extends React.Component {
                 <div className="row">
                     {<div className="col-3">
                         <ModuleList
-                            courseId={this.state.courseId}
+                            courseId={this.state.id}
                         />
                     </div>}
                     <div className="col-8">

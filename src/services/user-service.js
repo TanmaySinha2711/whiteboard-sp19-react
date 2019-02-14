@@ -12,16 +12,17 @@ export default class UserService {
         return this[singleton]
     }
 
-    registerUser(user) {
+    registerUser = (username, password) => {
         return fetch("http://localhost:8080/api/register", {
-            body: JSON.stringify(user),
+            method: 'POST',
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
             headers: {
                 'Content-Type': 'application/json'
-            },
-            method: 'POST'
-        }).then(function (response) {
-            return response.json();
-        })
+            }
+        }).then(response => response.json());
     }
 
     findAllUsers(){
@@ -31,15 +32,16 @@ export default class UserService {
             })
     }
 
-    login(user){
+    login = (username, password) => {
         return fetch("http://localhost:8080/api/login", {
-            body: JSON.stringify(user),
+            method: 'POST',
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
             headers: {
                 'Content-Type': 'application/json'
-            },
-            method: 'POST'
-        }).then(function (response) {
-            return response.json();
-        })
+            }
+        }).then(response => response.json());
     }
 }

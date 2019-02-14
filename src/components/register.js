@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
 import UserService from "../services/user-service";
 import WhiteBoard from '../components/Whiteboard';
-import Register from "../components/register";
+import LoginPanel from "../containers/login-panel";
 
-export default class LoginPanel extends Component {
+export default class Register extends Component {
     constructor() {
         super();
         this.userService = UserService.instance
@@ -13,7 +13,7 @@ export default class LoginPanel extends Component {
         return(
             <Router>
                 <div className="container-fluid">
-                    <h1>Login</h1>
+                    <h1>Register</h1>
                     <div>
                         <label htmlFor="username">Username: </label>
                         <input type="text"
@@ -30,20 +30,20 @@ export default class LoginPanel extends Component {
                     </div>
                     <br/>
                     <div>
-                        <Link to="/register">Not a member?</Link>
-                        <Route path='/register' exact
+                        <Link to="/">Already a member?</Link>
+                        <Route path='/' exact
                                render={() =>
-                                   <Register/>}/>
+                                   <LoginPanel/>}/>
                     </div>
                     <div>
                         <div>
                             <Link to='/whiteboard'>
                                 <button className="btn btn-primary"
-                                onClick={() => {this.userService.login(
-                                        this.refs.username.value,
-                                        this.refs.password.value
-                                    )}}>
-                                    Login
+                                        onClick={() => {this.userService.registerUser(
+                                            this.refs.username.value,
+                                            this.refs.password.value
+                                        )}}>
+                                    Sign Up
                                 </button>
                             </Link>
                             <Route path='/whiteboard' exact
