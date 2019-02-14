@@ -52,10 +52,10 @@ class WhiteBoard extends Component {
         <Router>
           <div>
             <div className="text-center">
-              <Link to="/">Course Grid</Link> |
-              <Link to="/table">Course Table</Link>
+              <Link to="/whiteboard">Course Grid</Link> |
+              <Link to="/whiteboard/table">Course Table</Link>
             </div>
-            <Route path='/' exact
+            <Route path='/whiteboard' exact
                    render={() =>
                      <CourseGrid
                        addCourse={this.addCourse}
@@ -64,7 +64,7 @@ class WhiteBoard extends Component {
             <Route path="/course/:id"
                    exact
                    component={CourseEditor}/>
-            <Route path='/table'
+            <Route path='/whiteboard/table'
                    render={() => <CourseTable
                      courses={this.state.courses}
                      addCourse={this.addCourse}

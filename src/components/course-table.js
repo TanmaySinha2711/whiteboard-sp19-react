@@ -7,7 +7,7 @@ const CourseTable = ({courses, deleteCourse, addCourse}) =>
 <div className="container-fluid">
   <nav className="navbar navbar-light bg-light justify-content-between">
     <a className = "nav-item" href = "#">
-      <Link to="/"><i className="fa fa-bars" aria-hidden="true"></i></Link>
+      <Link to="/whiteboard"><i className="fa fa-bars" aria-hidden="true"></i></Link>
     </a>
     <a className="navbar-brand">Course List</a>
     <form className="form-inline">

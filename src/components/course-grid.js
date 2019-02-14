@@ -8,7 +8,7 @@ const CourseGrid = ({courses, deleteCourse, addCourse}) =>
     <div className = "container-fluid">
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
              <a className="navbar-brand">
-                   <Link to="/table"><i className="fa fa-bars" aria-hidden="true"></i></Link>
+                   <Link to="/whiteboard/table"><i className="fa fa-bars" aria-hidden="true"></i></Link>
              </a>
              <a className="navbar-brand" href="#">Course Manager</a>
             <form className="form-inline">

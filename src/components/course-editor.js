@@ -124,7 +124,7 @@ class CourseEditor extends React.Component {
             <div className = "container-fluid">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a className="navbar-brand" href="#">
-                        <Link to="/"><i className="fa fa-window-close" aria-hidden="true"></i></Link>
+                        <Link to="/whiteboard"><i className="fa fa-window-close" aria-hidden="true"></i></Link>
                     </a>
                     <a className="navbar-brand" href="#">Course Editor: {this.state.courseTitle}</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
