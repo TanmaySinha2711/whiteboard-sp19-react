@@ -11,94 +11,44 @@ import {createStore} from "redux"
 import {Provider} from 'react-redux'
 
 import CourseService from "../services/course-service"
+import ModuleService from "../services/module-service"
 
 const store = createStore(WidgetReducer);
 
 class CourseEditor extends React.Component {
     constructor(props) {
-        super(props);
-        this.courseService = CourseService.instance;
-        this.state = {id: '',
-            title:''
-        };
-        this.selectCourse = this.selectCourse.bind(this);
-        this.setCourseTitle = this.setCourseTitle.bind(this);
-        /*this.state = {
-            course: course,
-            module: course.modules[0],
-            lesson: course.modules[0].lessons[0],
-            lessons: course.modules[0].lessons,
-            topic: course.modules[0].lessons[0].topics[0],
-            topics: course.modules[0].lessons[0].topics,
-            widgets:course.modules[0].lessons[0].topics[0].widgets,
-            newLesson:{ title: 'Default Lesson',
-                topics:[{
-                    title:'Default Topic'
-                }]
+        super(props)
+        this.courseService = CourseService.instance
+        const courseId = parseInt(props.match.params.id)
+        this.state = {
+            course: {
+                id: 0
             },
+            module: {
+                id: 0
+            },
+            lesson:{
+                id: 0
+            },
+            moduleId: 1,
+            lessonId: 1,
+            courseId: courseId,
+            modules: this.courseService.findCourseById(courseId).modules,
             newTopic:{
                 title:'Default Topic'
             }
-        }*/
+        }
     }
 
+    findCourseById(){
+        this.courseService.findCourseById(parseInt(this.props.match.params.id))
+            .then(course =>
+            this.setState({
+                course:course
+            }))
+    }
     componentDidMount() {
-        console.log()
-        this.selectCourse(this.props.match.params.id);
-        this.setCourseTitle(this.props.match.params.title);
-    }
-
-    selectCourse(courseId){
-        this.setState({
-            courseId: courseId
-        })
-    }
-
-    async setCourseTitle(id){
-        let title = await Promise.resolve(this.courseService.findCoursesById(id))
-            .then(function(response){
-                return response.title;
-
-            });
-        console.log(title)
-        this.setState({title: title });
-    }
-
-/*    createLesson = (event) => {
-        this.setState(
-            {lessons: [
-                    ...this.state.lessons,
-                    this.state.newLesson
-                ]
-            }
-        )
-    }
-
-    createTopic = (event) => {
-        this.setState(
-            {topics:[
-                    ...this.state.topics,
-                    this.state.newTopic
-                ]
-            }
-        )
-    }
-
-    lessonTitleChanged = (event) => {
-        this.setState(
-            {
-                newLesson: {title: event.target.value,
-                    topics:[{
-                        title:'Default Topic'
-                    }]}
-            });
-    }
-
-    topicTitleChanged = (event) => {
-        this.setState(
-            {
-                newTopic: {title: event.target.value}
-            });
+        this.findCourseById()
     }
 
     selectModule = module =>
@@ -118,16 +68,16 @@ class CourseEditor extends React.Component {
         this.setState({
             topic: topic,
             widgets:topic.widgets
-        })*/
+        })
 
     render() {
         return (
             <div className = "container-fluid">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a className="navbar-brand" href="#">
-                        <Link to="/whiteboard"><i className="fa fa-window-close" aria-hidden="true"></i></Link>
+                        <Link to="/"><i className="fa fa-window-close" aria-hidden="true"></i></Link>
                     </a>
-                    <a className="navbar-brand" href="#">Course Editor: {this.state.title}</a>
+                    <a className="navbar-brand" href="#">Course Editor: {this.state.course.title}</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -163,30 +113,26 @@ class CourseEditor extends React.Component {
                 </nav>
 
                 <div className="row">
-                    {<div className="col-3">
+                    <div className="col-3">
                         <ModuleList
-                            courseId={this.state.id}
+                            courseId={this.state.courseId}
+                            selectModule={this.selectModule}
                         />
-                    </div>}
+                    </div>
                     <div className="col-8">
-                        {/*<LessonTabs
-                            lessons={this.state.lessons}
-                            selectLesson={this.selectLesson}
-                            createLesson={this.createLesson}
-                            lessonTitleChanged={this.lessonTitleChanged}/>
+                        <LessonTabs
+                            moduleId={this.state.moduleId}
+                            selectLesson={this.selectLesson}/>
 
                         <TopicPills
-                            topics={this.state.topics}
-                            selectTopic={this.selectTopic}
-                            createTopic={this.createTopic}
-                            topicTitleChanged={this.topicTitleChanged}/>*/}
+                            lessonId={this.state.lessonId}
+                            selectTopic={this.selectTopic}/>
                         <PreviewBar/>
-                       {/* <Provider store={store}>
+                        {/*<Provider store={store}>
                             <WidgetListContainer previewWidgets={this.state.widgets}
                                                  key={this.state.topic.id}
-                            topic = {this.state.topic}/>
-                        </Provider>
-                        <WidgetList/>*/}
+                                                 topic = {this.state.topic}/>
+                        </Provider>*/}
                     </div>
                 </div>
             </div>

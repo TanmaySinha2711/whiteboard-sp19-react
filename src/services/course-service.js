@@ -22,7 +22,7 @@ export default class CourseService {
             return response.json();
         })}
 
-    findCoursesById(courseId) {
+    findCourseById(courseId) {
         return fetch("http://localhost:8080/api/courses" + '/' + courseId)
             .then(function(response){
                 return response.json();
@@ -45,12 +45,4 @@ export default class CourseService {
         })
     }
 
-   /* findWidgetsByTopic = (topicId) => {
-        let widgets = []
-        for(let i = 0; i < this.courses[0].modules.length; i++)
-            for(let j = 0; j < this.courses[0].modules[i].lessons.length; j++)
-                for(let k = 0; k < this.courses[0].modules[i].lessons[j].topics.length; k++)
-                        if(this.courses[0].modules[i].lessons[j].topics[k].id === topicId)
-                            return this.courses[0].modules[i].lessons[j].topics[k].widgets
-    }*/
 }

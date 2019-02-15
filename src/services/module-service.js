@@ -24,7 +24,7 @@ export default class ModuleService {
 
     findAllModulesForCourse(courseId) {
         return fetch(
-            "http://localhost:8080/api/courses/{cid}/modules"
+            "http://localhost:8080/api/courses/cid/modules"
                 .replace('cid', courseId))
             .then(function (response) {
                 return response.json();
@@ -32,10 +32,16 @@ export default class ModuleService {
     }
 
 
-    /*deleteModule(moduleId) {
-        return fetch(MODULE_DELETE_URL_HEROKU.replace
-        ('MID', moduleId), {
+    deleteModule(moduleId) {
+        return fetch("http://localhost:8080/api/modules/{mid}".replace
+        ('mid', moduleId), {
             method: 'delete'
         })
-    }*/
+    }
+    findModuleById(moduleId) {
+        return fetch("http://localhost:8080/api/modules" + '/' + moduleId)
+            .then(function(response){
+                return response.json();
+            });
+    }
 }
