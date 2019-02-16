@@ -12,7 +12,7 @@ export default class CourseService {
     }
 
     addCourse(course) {
-        return fetch("http://localhost:8080/api/courses", {
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses", {
             body: JSON.stringify(course),
             headers: {
                 'Content-Type': 'application/json'
@@ -23,21 +23,21 @@ export default class CourseService {
         })}
 
     findCourseById(courseId) {
-        return fetch("http://localhost:8080/api/courses" + '/' + courseId)
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses" + '/' + courseId)
             .then(function(response){
                 return response.json();
             });
     }
 
     findAllCourses() {
-        return fetch("http://localhost:8080/api/courses")
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses")
             .then(function (response) {
                 return response.json()
             })
     }
 
     deleteCourse(courseId) {
-        return fetch("http://localhost:8080/api/courses" + '/' + courseId,
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses" + '/' + courseId,
             {
                 method: 'DELETE'
             }).then(function (response) {

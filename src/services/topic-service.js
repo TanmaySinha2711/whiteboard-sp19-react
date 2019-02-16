@@ -13,7 +13,7 @@ export default class TopicService {
     }
 
     createTopic(lessonId, topic) {
-        return fetch("http://localhost:8080/api/lessons/{lid}/topics".replace('lid', lessonId),
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/lessons/{lid}/topics".replace('lid', lessonId),
             {body: JSON.stringify(topic),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
@@ -24,7 +24,7 @@ export default class TopicService {
 
     findAllTopicsForLesson(lessonId) {
         return fetch(
-            "http://localhost:8080/api/lessons/lid/topics"
+            "https://web-dev-ass5-java.herokuapp.com/api/lessons/lid/topics"
                 .replace('lid', lessonId))
             .then(function (response) {
                 return response.json();
@@ -33,14 +33,14 @@ export default class TopicService {
 
 
     deleteTopic(topicId) {
-        return fetch("http://localhost:8080/api/topics/{tid}".replace
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/topics/{tid}".replace
         ('lid', topicId), {
             method: 'delete'
         })
     }
 
     findTopicById(topicId) {
-        return fetch("http://localhost:8080/api/topicss" + '/' + topicId)
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/topicss" + '/' + topicId)
             .then(function(response){
                 return response.json();
             });

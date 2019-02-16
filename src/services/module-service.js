@@ -13,7 +13,7 @@ export default class ModuleService {
     }
 
     createModule(courseId, module) {
-        return fetch("http://localhost:8080/api/courses/{cid}/modules".replace('cid', courseId),
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses/{cid}/modules".replace('cid', courseId),
             {body: JSON.stringify(module),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
@@ -24,7 +24,7 @@ export default class ModuleService {
 
     findAllModulesForCourse(courseId) {
         return fetch(
-            "http://localhost:8080/api/courses/cid/modules"
+            "https://web-dev-ass5-java.herokuapp.com/api/courses/cid/modules"
                 .replace('cid', courseId))
             .then(function (response) {
                 return response.json();
@@ -33,13 +33,13 @@ export default class ModuleService {
 
 
     deleteModule(moduleId) {
-        return fetch("http://localhost:8080/api/modules/{mid}".replace
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/modules/{mid}".replace
         ('mid', moduleId), {
             method: 'delete'
         })
     }
     findModuleById(moduleId) {
-        return fetch("http://localhost:8080/api/modules" + '/' + moduleId)
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/modules" + '/' + moduleId)
             .then(function(response){
                 return response.json();
             });

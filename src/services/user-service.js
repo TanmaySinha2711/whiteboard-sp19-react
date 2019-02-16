@@ -13,7 +13,7 @@ export default class UserService {
     }
 
     registerUser = (username, password) => {
-        return fetch("http://localhost:8080/api/register", {
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/register", {
             method: 'POST',
             body: JSON.stringify({
                 username: username,
@@ -26,14 +26,14 @@ export default class UserService {
     }
 
     findAllUsers(){
-        return fetch("http://localhost:8080/api/users")
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/users")
             .then(function (response) {
                 return response.json()
             })
     }
 
     login = (username, password) => {
-        return fetch("http://localhost:8080/api/login", {
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/login", {
             method: 'POST',
             body: JSON.stringify({
                 username: username,

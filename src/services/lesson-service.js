@@ -13,7 +13,7 @@ export default class LessonService {
     }
 
     createLesson(moduleId, lesson) {
-        return fetch("http://localhost:8080/api/modules/{mid}/lessons".replace('mid', moduleId),
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/modules/{mid}/lessons".replace('mid', moduleId),
             {body: JSON.stringify(lesson),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
@@ -24,7 +24,7 @@ export default class LessonService {
 
     findAllLessonsForModule(moduleId) {
         return fetch(
-            "http://localhost:8080/api/modules/mid/lessons"
+            "https://web-dev-ass5-java.herokuapp.com/api/modules/mid/lessons"
                 .replace('mid', moduleId))
             .then(function (response) {
                 return response.json();
@@ -33,14 +33,14 @@ export default class LessonService {
 
 
     deleteLesson(lessonId) {
-        return fetch("http://localhost:8080/api/lessons/{lid}".replace
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/lessons/{lid}".replace
         ('lid', lessonId), {
             method: 'delete'
         })
     }
 
     findLessonById(lessonId) {
-        return fetch("http://localhost:8080/api/lessons" + '/' + lessonId)
+        return fetch("https://web-dev-ass5-java.herokuapp.com/api/lessons" + '/' + lessonId)
             .then(function(response){
                 return response.json();
             });
