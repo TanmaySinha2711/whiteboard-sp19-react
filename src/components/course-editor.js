@@ -33,10 +33,7 @@ class CourseEditor extends React.Component {
             moduleId: 1,
             lessonId: 1,
             courseId: courseId,
-            modules: this.courseService.findCourseById(courseId).modules,
-            newTopic:{
-                title:'Default Topic'
-            }
+            modules: this.courseService.findCourseById(courseId).modules
         }
     }
 
@@ -53,6 +50,7 @@ class CourseEditor extends React.Component {
 
     selectModule = module =>
         this.setState({
+            moduleId: module.id,
             module: module,
             lessons: module.lessons,
             topics: module.lessons[0].topics,
@@ -60,6 +58,7 @@ class CourseEditor extends React.Component {
         })
     selectLesson = lesson =>
         this.setState({
+            lessonId: lesson.id,
             lesson: lesson,
             topics: lesson.topics,
             widgets: lesson.topics[0].widgets
@@ -123,7 +122,6 @@ class CourseEditor extends React.Component {
                         <LessonTabs
                             moduleId={this.state.moduleId}
                             selectLesson={this.selectLesson}/>
-
                         <TopicPills
                             lessonId={this.state.lessonId}
                             selectTopic={this.selectTopic}/>

@@ -4,6 +4,7 @@ export default class CourseService {
     constructor(singletonToken) {
         if (singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
+        this.URL = "https://web-dev-ass5-java.herokuapp.com"
     }
     static get instance() {
         if(!this[singleton])
@@ -12,7 +13,7 @@ export default class CourseService {
     }
 
     addCourse(course) {
-        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses", {
+        return fetch(this.URL + "/api/courses", {
             body: JSON.stringify(course),
             headers: {
                 'Content-Type': 'application/json'
@@ -23,21 +24,21 @@ export default class CourseService {
         })}
 
     findCourseById(courseId) {
-        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses" + '/' + courseId)
+        return fetch(this.URL + "/api/courses" + '/' + courseId)
             .then(function(response){
                 return response.json();
             });
     }
 
     findAllCourses() {
-        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses")
+        return fetch(this.URL + "/api/courses")
             .then(function (response) {
                 return response.json()
             })
     }
 
     deleteCourse(courseId) {
-        return fetch("https://web-dev-ass5-java.herokuapp.com/api/courses" + '/' + courseId,
+        return fetch(this.URL + "/api/courses" + '/' + courseId,
             {
                 method: 'DELETE'
             }).then(function (response) {

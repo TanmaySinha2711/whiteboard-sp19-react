@@ -11,47 +11,39 @@ export default class Register extends Component {
     }
     render(){
         return(
-            <Router>
-                <div className="container-fluid">
-                    <h1>Register</h1>
+            <div className="container-fluid">
+                <h1>Register</h1>
+                <div>
+                    <label htmlFor="username">Username: </label>
+                    <input type="text"
+                           ref="username"
+                           className="form-control"
+                           placeholder="Enter your username"/>
+                </div>
+                <div>
+                    <label htmlFor="password">Password: </label>
+                    <input type="text"
+                           ref="password"
+                           className="form-control"
+                           placeholder="Enter your password"/>
+                </div>
+                <br/>
+                <div>
+                    <Link to="/login">Already a member?</Link>
+                </div>
+                <div>
                     <div>
-                        <label htmlFor="username">Username: </label>
-                        <input type="text"
-                               ref="username"
-                               className="form-control"
-                               placeholder="Enter your username"/>
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password: </label>
-                        <input type="text"
-                               ref="password"
-                               className="form-control"
-                               placeholder="Enter your password"/>
-                    </div>
-                    <br/>
-                    <div>
-                        <Link to="/">Already a member?</Link>
-                        <Route path='/' exact
-                               render={() =>
-                                   <LoginPanel/>}/>
-                    </div>
-                    <div>
-                        <div>
-                            <Link to='/whiteboard'>
-                                <button className="btn btn-primary"
-                                        onClick={() => {this.userService.registerUser(
-                                            this.refs.username.value,
-                                            this.refs.password.value
-                                        )}}>
-                                    Sign Up
-                                </button>
-                            </Link>
-                            <Route path='/whiteboard' exact
-                                   render={() =>
-                                       <WhiteBoard/>}/>
-                        </div>
+                        <Link to='/whiteboard'>
+                            <button className="btn btn-primary"
+                                    onClick={() => {this.userService.register(
+                                        this.refs.username.value,
+                                        this.refs.password.value
+                                    )}}>
+                                Sign Up
+                            </button>
+                        </Link>
                     </div>
                 </div>
-            </Router>
+            </div>
         )}
 }
