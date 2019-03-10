@@ -5,7 +5,7 @@ export default class ModuleService {
     constructor(singletonToken) {
         if (singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
-        this.URL = "https://web-dev-ass5-java.herokuapp.com"
+        this.URL = "http://localhost:8080"
     }
     static get instance() {
         if(!this[singleton])
@@ -14,7 +14,7 @@ export default class ModuleService {
     }
 
     createModule(courseId, module) {
-        return fetch(this.URL + "/api/courses/{cid}/modules".replace('cid', courseId),
+        return fetch(this.URL + "/api/courses/" + courseId + "/module",
             {body: JSON.stringify(module),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
@@ -31,13 +31,15 @@ export default class ModuleService {
             })
     }
 
-
     deleteModule(moduleId) {
-        return fetch(this.URL + "/api/modules/{mid}".replace
-        ('mid', moduleId), {
-            method: 'delete'
+        return fetch(this.URL + "/api/modules/" + moduleId,
+            {
+                method: 'DELETE'
+            }).then(function (response) {
+            return response;
         })
     }
+
     findModuleById(moduleId) {
         return fetch(this.URL + "/api/modules" + '/' + moduleId)
             .then(function(response){

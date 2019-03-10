@@ -4,7 +4,7 @@ export default class UserService {
     constructor(singletonToken) {
         if (singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
-        this.URL = "https://web-dev-ass5-java.herokuapp.com"
+        this.URL = "http://localhost:8080"
     }
 
     static get instance() {
@@ -82,5 +82,12 @@ export default class UserService {
 
             return data;
         });
+    }
+
+    findUserByCredentials(username, password){
+        return fetch(this.URL + "/api/users/" + username + "/" + password)
+            .then(function (response) {
+                return response.json()
+            })
     }
 }

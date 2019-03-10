@@ -5,7 +5,7 @@ export default class TopicService {
     constructor(singletonToken) {
         if (singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
-        this.URL = "https://web-dev-ass5-java.herokuapp.com"
+        this.URL = "http://localhost:8080"
     }
     static get instance() {
         if(!this[singleton])
@@ -14,7 +14,7 @@ export default class TopicService {
     }
 
     createTopic(lessonId, topic) {
-        return fetch(this.URL + "/api/lessons/{lid}/topics".replace('lid', lessonId),
+        return fetch(this.URL + "/api/lessons/" + lessonId + "/topic",
             {body: JSON.stringify(topic),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
@@ -24,8 +24,7 @@ export default class TopicService {
     }
 
     findAllTopicsForLesson(lessonId) {
-        return fetch(this.URL + "/api/lessons/lid/topics"
-                .replace('lid', lessonId))
+        return fetch(this.URL + "/api/lessons/" + lessonId + "/topics")
             .then(function (response) {
                 return response.json();
             })

@@ -5,7 +5,7 @@ export default class LessonService {
     constructor(singletonToken) {
         if (singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
-        this.URL = "https://web-dev-ass5-java.herokuapp.com"
+        this.URL = "http://localhost:8080"
     }
     static get instance() {
         if(!this[singleton])
@@ -14,7 +14,7 @@ export default class LessonService {
     }
 
     createLesson(moduleId, lesson) {
-        return fetch(this.URL + "/api/modules/{mid}/lessons".replace('mid', moduleId),
+        return fetch(this.URL + "/api/modules/" + moduleId + "/lesson",
             {body: JSON.stringify(lesson),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
@@ -24,8 +24,7 @@ export default class LessonService {
     }
 
     findAllLessonsForModule(moduleId) {
-        return fetch(this.URL + "/api/modules/mid/lessons"
-                .replace('mid', moduleId))
+        return fetch(this.URL + "/api/modules/" + moduleId + "/lessons")
             .then(function (response) {
                 return response.json();
             })

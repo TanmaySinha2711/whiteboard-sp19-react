@@ -31,9 +31,8 @@ class CourseEditor extends React.Component {
                 id: 0
             },
             moduleId: 1,
-            lessonId: 1,
-            courseId: courseId,
-            modules: this.courseService.findCourseById(courseId).modules
+            lessonId: 6,
+            courseId: courseId
         }
     }
 
@@ -52,21 +51,21 @@ class CourseEditor extends React.Component {
         this.setState({
             moduleId: module.id,
             module: module,
-            lessons: module.lessons,
-            topics: module.lessons[0].topics,
-            widgets: module.lessons[0].topics[0].widgets
+            lessons: module.lessons
+            //topics: module.lessons[0].topics
+            //widgets: module.lessons[0].topics[0].widgets
         })
     selectLesson = lesson =>
         this.setState({
             lessonId: lesson.id,
             lesson: lesson,
-            topics: lesson.topics,
-            widgets: lesson.topics[0].widgets
+            topics: lesson.topics
+            //widgets: lesson.topics[0].widgets
         })
     selectTopic = topic =>
         this.setState({
-            topic: topic,
-            widgets:topic.widgets
+            topic: topic
+            //widgets:topic.widgets
         })
 
     render() {
@@ -114,7 +113,7 @@ class CourseEditor extends React.Component {
                 <div className="row">
                     <div className="col-3">
                         <ModuleList
-                            courseId={this.state.courseId}
+                            course={this.state.course}
                             selectModule={this.selectModule}
                         />
                     </div>

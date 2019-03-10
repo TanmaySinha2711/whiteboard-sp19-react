@@ -1,16 +1,23 @@
 import React from 'react'
 import './mouse-hover.css'
 import TopicService from "../services/topic-service";
+import LessonService from "../services/lesson-service"
 
 class TopicPills extends React.Component{
     constructor(props) {
         super(props)
         this.topicService = TopicService.instance
+        this.lessonService = LessonService.instance
+        this.less = this.lessonService.findLessonById(this.props.lessonId)
         this.state = {
-            topic: { title: 'Default' },
             topics: [],
-            newTopic:{ title: 'Default Topic'}
+            newTopic:{ title: 'Default Topic',
+            widgets:[],
+            lesson: this.less}
         };
+
+        this.topicTitleChanged = this.topicTitleChanged.bind(this);
+        this.createTopic = this.createTopic.bind(this);
     }
 
     componentDidMount() {
@@ -19,19 +26,19 @@ class TopicPills extends React.Component{
         }
     }
     createTopic = () => {
-        this.setState(
-            {topics:[
-                    ...this.state.topics,
-                    this.state.newTopic
-                ]
-            }
-        )
+        this.topicService
+            .createTopic(this.props.lessonId, this.state.newTopic)
+            .then(() => {
+                this.findTopicsForLesson()
+            })
     }
 
     topicTitleChanged = (event) => {
         this.setState(
             {
-                newTopic: {title: event.target.value}
+                newTopic: {title: event.target.value,
+                widgets:[],
+                lesson: this.less}
             });
     }
 

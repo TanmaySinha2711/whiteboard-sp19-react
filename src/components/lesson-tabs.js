@@ -1,20 +1,25 @@
 import React from 'react'
 import './mouse-hover.css'
 import LessonService from '../services/lesson-service'
+import ModuleService from "../services/module-service"
 
 class LessonTabs extends React.Component {
     constructor(props) {
         super(props)
         this.lessonService = LessonService.instance
+        this.moduleService = ModuleService.instance
+        const module = this.moduleService.findModuleById(this.props.moduleId)
+
         this.state = {
-            lesson: { title: 'Default' },
             lessons: [],
-            newLesson:{ title: 'Default Lesson',
-                topics:[{
-                    title:'Default Topic'
-                }]
+            newLesson:{
+                title: 'Default Lesson',
+                module: module,
+                topics:[]
             }
-        };
+        }
+        this.lessonTitleChanged = this.lessonTitleChanged.bind(this);
+        this.createLesson = this.createLesson.bind(this);
     }
 
     componentDidMount() {
@@ -24,22 +29,21 @@ class LessonTabs extends React.Component {
         }
     }
     createLesson = () => {
-        this.setState(
-            {lessons: [
-                    ...this.state.lessons,
-                    this.state.newLesson
-                ]
-            }
-        )
+        this.lessonService
+            .createLesson(this.props.moduleId, this.state.newLesson)
+            .then(() => {
+                this.findLessonsForModule()
+            })
     }
     lessonTitleChanged = (event) => {
         this.setState(
             {
-                newLesson: {title: event.target.value,
-                    topics:[{
-                        title:'Default Topic'
-                    }]}
-            });
+                newLesson: {
+                    title: event.target.value,
+                    module: this.module,
+                    topics: []
+                }
+            })
     }
 
     findLessonsForModule(){
