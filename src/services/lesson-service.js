@@ -32,9 +32,10 @@ export default class LessonService {
 
 
     deleteLesson(lessonId) {
-        return fetch(this.URL + "/api/lessons/{lid}".replace
-        ('lid', lessonId), {
-            method: 'delete'
+        return fetch(this.URL + "/api/lessons/" + lessonId, {
+            method: 'DELETE'
+        }).then(function (response) {
+            return response;
         })
     }
 

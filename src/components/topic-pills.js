@@ -11,9 +11,11 @@ class TopicPills extends React.Component{
         this.less = this.lessonService.findLessonById(this.props.lessonId)
         this.state = {
             topics: [],
-            newTopic:{ title: 'Default Topic',
-            widgets:[],
-            lesson: this.less}
+            newTopic:{
+                title: 'Default Topic',
+                widgets:[],
+                lesson: this.less
+            }
         };
 
         this.topicTitleChanged = this.topicTitleChanged.bind(this);
@@ -36,9 +38,11 @@ class TopicPills extends React.Component{
     topicTitleChanged = (event) => {
         this.setState(
             {
-                newTopic: {title: event.target.value,
-                widgets:[],
-                lesson: this.less}
+                newTopic: {
+                    title: event.target.value,
+                    widgets:[],
+                    lesson: this.less
+                }
             });
     }
 

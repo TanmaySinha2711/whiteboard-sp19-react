@@ -11,8 +11,7 @@ class WhiteBoard extends Component {
         super();
         this.courseService = CourseService.instance
         this.userService = UserService.instance
-        const user = this.userService.findUserByCredentials("bhim",
-            "pass")
+        const user = this.userService.findUserById(1)
 
         this.state = {
             courses: [],

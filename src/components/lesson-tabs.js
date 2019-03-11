@@ -20,6 +20,7 @@ class LessonTabs extends React.Component {
         }
         this.lessonTitleChanged = this.lessonTitleChanged.bind(this);
         this.createLesson = this.createLesson.bind(this);
+        this.deleteLesson = this.deleteLesson.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +47,12 @@ class LessonTabs extends React.Component {
             })
     }
 
+    deleteLesson = lessonId =>
+        this.lessonService.deleteLesson(lessonId)
+            .then(() => {
+                this.findLessonsForModule()
+            })
+
     findLessonsForModule(){
         console.log(this.lessonService.findAllLessonsForModule(this.props.moduleId))
         this.lessonService.findAllLessonsForModule(this.props.moduleId)
@@ -64,9 +71,17 @@ class LessonTabs extends React.Component {
                         {this.state.lessons.length ?
                             this.state.lessons.map(lesson =>
                                 <li key={lesson.id} className="nav-item">
-                                    <a className="nav-link mouse_hover"
-                                       onClick={() => this.props.selectLesson(lesson)}>{lesson.title}
-                                    </a>
+                                    <div>
+                                        <a className="nav-link mouse_hover"
+                                            onClick={() => this.props.selectLesson(lesson)}>{lesson.title}
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a onClick={()=> this.deleteLesson(lesson.id)}
+                                           className="btn btn-danger">
+                                            <i className="fa fa-close" aria-hidden="true"/>
+                                        </a>
+                                    </div>
                                 </li>
                             ) : ""
                         }

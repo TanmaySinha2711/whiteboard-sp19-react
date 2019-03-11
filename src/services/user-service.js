@@ -90,4 +90,11 @@ export default class UserService {
                 return response.json()
             })
     }
+
+    findUserById(userId){
+        return fetch(this.URL + "/api/users/" + userId)
+            .then(function (response) {
+                return response.json()
+            })
+    }
 }
