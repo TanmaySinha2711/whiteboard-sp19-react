@@ -1,16 +1,10 @@
-import CourseService from './course-service'
-
 let _singleton = Symbol();
-
-const TOPIC_API_URL =
-    'http://localhost:8080/api/course/CID/module/MID/lesson/LID/topic/TID/widget';
-const WIDGET_DELETE_API_URL=
-    'http://localhost:8080/api/widget/WID';
 
 class WidgetService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate another instance');
+        this.URL = "http://localhost:8080"
     }
     static get instance() {
         if(!this[_singleton])
@@ -18,42 +12,26 @@ class WidgetService {
         return this[_singleton]
     }
 
-    findAllWidgets = () =>{
-        let cs = new CourseService()
-        let courses = cs.findAllCourses()
-        return courses.module.lessons.topics.widgets
-    }
-
-
-    createWidget(topicId, widget) {
-        return fetch(TOPIC_API_URL.replace('TID', topicId),
-            {   body: JSON.stringify(widget),
+    createHeadingWidget(topicId) {
+        return fetch(this.URL + "/api/topics/" + topicId + "/heading/widget",
+            {body: JSON.stringify({
+                    title: "new heading",
+                    type:"HEADING",
+                    size: 1
+                }),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
-            }).then(function (response)
-        { return response.json(); })
+            }).then(function (response) {
+            return response.json();
+        })
     }
 
-    findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId) {
-        return fetch(
-            TOPIC_API_URL
-                .replace('CID', courseId)
-                .replace('MID', moduleId)
-                .replace('LID', lessonId)
-                .replace('TID', topicId))
+    findAllWidgetsForTopic(topicId) {
+        return fetch(this.URL + "/api/topics/" + topicId + "/widgets")
             .then(function (response) {
                 return response.json();
             })
     }
-
-
-    deleteLesson(widgetId) {
-        return fetch(WIDGET_DELETE_API_URL.replace
-        ('WID', widgetId), {
-            method: 'delete'
-        })
-    }
-
 
 }
 export default WidgetService;

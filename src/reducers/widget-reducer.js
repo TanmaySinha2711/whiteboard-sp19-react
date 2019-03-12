@@ -3,47 +3,7 @@ import WidgetService from '../services/widget-service'
 
 let cs = CourseService.instance
 const widgets = {
-    widgets: [
-        {
-            "id": 123,
-            "title": "Heading Widget",
-            "type": "HEADING",
-            "size": 1,
-            "text": "default, widget, text",
-            "hidden": false
-        },
-        {
-            "id": 234,
-            "title": "Paragraph Widget",
-            "type": "PARA",
-            "size": 1,
-            "text": "default, widget, text",
-            "hidden": false
-        },
-        {
-            "id": 345,
-            "title": "List Widget",
-            "type": "LIST",
-            "text": "default, widget, text",
-            "hidden": false
-        },
-        {
-            "id": 456,
-            "title": "Image Widget",
-            "type": "IMAGE",
-            "size": 1,
-            "text": "https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg",
-            "hidden": false
-        },
-        {
-            "id": 567,
-            "title": "Link Widget",
-            "type": "LINK",
-            "size": 1,
-            "text": "http://www.google.com",
-            "hidden": false
-        }
-    ]
+    widgets: []
 }
 
 const WidgetReducer = (state = widgets, action) => {
@@ -63,13 +23,7 @@ const WidgetReducer = (state = widgets, action) => {
             }
         case 'ADD_WIDGET':
             return {
-                widgets: [
-                    ...state.widgets,
-                    {
-                        type: 'HEADING',
-                        text: 'Default Widget'
-                    }
-                ]
+                widgets: action.widgets
             }
         case 'UPDATE_WIDGET':
             return {

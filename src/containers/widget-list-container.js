@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import WidgetList from '../components/widget-list'
-import CourseService from "../services/course-service";
+import WidgetService from "../services/widget-service";
 
 const stateToPropertyMapper = (state, previewWidgets) => ({
     previewWidgets: previewWidgets.previewWidgets,
@@ -14,7 +14,7 @@ const dispatchToPropertyMapper = dispatch => ({
             type:'FIND_ALL_WIDGETS'
         }),
     loadWidgets: topicId => {
-        let widgets = (new CourseService()).findWidgetsByTopic(topicId)
+        let widgets = (WidgetService.instance).findAllWidgetsForTopic(topicId)
         console.log(topicId)
         dispatch({
             type: 'LOAD_WIDGETS',
@@ -26,10 +26,17 @@ const dispatchToPropertyMapper = dispatch => ({
             type: 'DELETE_WIDGET',
             widget: widget
         }),
-    addWidget: () =>
-        dispatch({
-            type: 'ADD_WIDGET'
-        }),
+    addWidget: (topicId) =>{
+        let ws = WidgetService.instance
+        ws.createHeadingWidget(topicId)
+            .then(() => ws.findAllWidgetsForTopic(topicId)
+                .then(widgets =>
+                    dispatch({
+                        type: "FIND_ALL_WIDGETS",
+                        widgets: widgets
+                    })
+                ))
+    },
     updateWidget: widget =>
         dispatch({
             type: 'UPDATE_WIDGET',

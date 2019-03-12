@@ -11,7 +11,7 @@ import {createStore} from "redux"
 import {Provider} from 'react-redux'
 
 import CourseService from "../services/course-service"
-import ModuleService from "../services/module-service"
+import TopicService from "../services/topic-service"
 
 const store = createStore(WidgetReducer);
 
@@ -19,6 +19,7 @@ class CourseEditor extends React.Component {
     constructor(props) {
         super(props)
         this.courseService = CourseService.instance
+        this.topicService = TopicService.instance
         const courseId = parseInt(props.match.params.id)
         this.state = {
             course: {
@@ -31,7 +32,8 @@ class CourseEditor extends React.Component {
                 id: 0
             },
             moduleId: 1,
-            lessonId: 6,
+            lessonId: 1,
+            topicId: 1,
             courseId: courseId
         }
     }
@@ -125,11 +127,11 @@ class CourseEditor extends React.Component {
                             lessonId={this.state.lessonId}
                             selectTopic={this.selectTopic}/>
                         <PreviewBar/>
-                        {/*<Provider store={store}>
+                        {<Provider store={store}>
                             <WidgetListContainer previewWidgets={this.state.widgets}
-                                                 key={this.state.topic.id}
-                                                 topic = {this.state.topic}/>
-                        </Provider>*/}
+                                                 key={this.state.topicId}
+                                                 topicId = {this.state.topicId}/>
+                        </Provider>}
                     </div>
                 </div>
             </div>

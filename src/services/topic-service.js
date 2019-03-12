@@ -32,14 +32,15 @@ export default class TopicService {
 
 
     deleteTopic(topicId) {
-        return fetch(this.URL + "/api/topics/{tid}".replace
-        ('lid', topicId), {
-            method: 'delete'
+        return fetch(this.URL + "/api/topics/" + topicId, {
+            method: 'DELETE'
+        }).then(function (response) {
+            return response;
         })
     }
 
     findTopicById(topicId) {
-        return fetch(this.URL + "/api/topicss" + '/' + topicId)
+        return fetch(this.URL + "/api/topics/" + topicId)
             .then(function(response){
                 return response.json();
             });

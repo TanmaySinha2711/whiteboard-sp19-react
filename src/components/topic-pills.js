@@ -20,6 +20,7 @@ class TopicPills extends React.Component{
 
         this.topicTitleChanged = this.topicTitleChanged.bind(this);
         this.createTopic = this.createTopic.bind(this);
+        this.deleteTopic = this.deleteTopic.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +47,12 @@ class TopicPills extends React.Component{
             });
     }
 
+    deleteTopic = topicId =>
+        this.topicService.deleteTopic(topicId)
+            .then(() => {
+                this.findTopicsForLesson()
+            })
+
     findTopicsForLesson(){
         this.topicService.findAllTopicsForLesson(this.props.lessonId)
             .then(topics =>{
@@ -62,9 +69,17 @@ class TopicPills extends React.Component{
                         {this.state.topics.length?
                             this.state.topics.map(topic =>
                                 <li key={topic.id} className="nav-item">
-                                    <a className="nav-link mouse_hover"
-                                       onClick={() => this.props.selectTopic(topic)}>{topic.title}
-                                    </a>
+                                    <div>
+                                        <a className="nav-link mouse_hover"
+                                           onClick={() => this.props.selectTopic(topic)}>{topic.title}
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a onClick={()=> this.deleteTopic(topic.id)}
+                                           className="btn btn-danger">
+                                            <i className="fa fa-close" aria-hidden="true"/>
+                                        </a>
+                                    </div>
                                 </li>
                             ):""
                         }
