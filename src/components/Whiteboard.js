@@ -17,7 +17,7 @@ class WhiteBoard extends Component {
             courses: [],
             newCourse: {
                 "title": "new course",
-                "faculty": {id: 1},
+                //"faculty": {id: 1},
                 "modules": []
             }
         }

@@ -48,7 +48,7 @@ const WidgetComponent = ({widget, deleteWidget, updateWidget, moveUp, moveDown, 
             </div>
             <div className = "col-md-4">
                 <div className = "p-2">
-                    <button onClick={() => deleteWidget(widget)}>
+                    <button onClick={() => deleteWidget(widget.id)}>
                         <i className="fa fa-window-close" aria-hidden="true"></i>
                     </button>
                 </div>

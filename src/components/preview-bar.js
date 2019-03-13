@@ -1,8 +1,7 @@
 import React from 'react'
 import './toggle-button.css'
 
-export default class PreviewBar
-    extends React.Component {
+export default class PreviewBar extends React.Component {
     render() {
         return(
             <div className = "row p-2">

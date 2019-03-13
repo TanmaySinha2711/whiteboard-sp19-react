@@ -66,8 +66,9 @@ class CourseEditor extends React.Component {
         })
     selectTopic = topic =>
         this.setState({
-            topic: topic
-            //widgets:topic.widgets
+            topicId: topic.id,
+            topic: topic,
+            widgets:topic.widgets
         })
 
     render() {

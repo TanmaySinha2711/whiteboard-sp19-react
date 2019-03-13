@@ -7,6 +7,7 @@ const stateToPropertyMapper = (state, previewWidgets) => ({
     previewWidgets: previewWidgets.previewWidgets,
     widgets: state.widgets
 })
+let topId = 0;
 
 const dispatchToPropertyMapper = dispatch => ({
     findAllWidgets: () =>
@@ -14,6 +15,7 @@ const dispatchToPropertyMapper = dispatch => ({
             type:'FIND_ALL_WIDGETS'
         }),
     loadWidgets: topicId => {
+        topId = topicId
         let widgets = (WidgetService.instance).findAllWidgetsForTopic(topicId)
         console.log(topicId)
         dispatch({
@@ -21,11 +23,17 @@ const dispatchToPropertyMapper = dispatch => ({
             widgets: widgets
         })
     },
-    deleteWidget: widget =>
-        dispatch({
-            type: 'DELETE_WIDGET',
-            widget: widget
-        }),
+    deleteWidget: widgetId =>{
+        let ws = WidgetService.instance
+        ws.deleteWidget(widgetId)
+            .then(() => ws.findAllWidgetsForTopic(topId)
+                .then(widgets =>
+                    dispatch({
+                        type: "FIND_ALL_WIDGETS",
+                        widgets: widgets
+                    })
+                ))
+    },
     addWidget: (topicId) =>{
         let ws = WidgetService.instance
         ws.createHeadingWidget(topicId)

@@ -24,7 +24,7 @@ class LessonTabs extends React.Component {
     }
 
     componentDidMount() {
-        console.log("asasas" , this.props.moduleId)
+        //console.log("asasas" , this.props.moduleId)
         if(this.props.moduleId !== 0){
             this.findLessonsForModule()
         }

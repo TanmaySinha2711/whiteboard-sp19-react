@@ -33,5 +33,23 @@ class WidgetService {
             })
     }
 
+    deleteWidget(widgetId){
+        return fetch(this.URL + "/api/widgets/" + widgetId, {
+            method: 'DELETE'
+        }).then(function (response) {
+            return response;
+        })
+    }
+
+    updateWidget(widgetId, widget){
+        return fetch(this.URL + "/api/widgets/" + widgetId,
+            {body: JSON.stringify(widget),
+                headers: { 'Content-Type': 'application/json' },
+                method: 'PUT'
+            }).then(function (response) {
+            return response.json();
+        })
+    }
+
 }
 export default WidgetService;
