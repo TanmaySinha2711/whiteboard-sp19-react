@@ -4,7 +4,7 @@ class WidgetService {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Cannot instantiate another instance');
-        this.URL = "http://localhost:8080"
+        this.URL = "https://web-dev-ass5-java.herokuapp.com"
     }
     static get instance() {
         if(!this[_singleton])

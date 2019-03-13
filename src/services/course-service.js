@@ -4,7 +4,7 @@ export default class CourseService {
     constructor(singletonToken) {
         if (singleton !== singletonToken)
             throw new Error('Cannot instantiate directly.');
-        this.URL = "http://localhost:8080"
+        this.URL = "https://web-dev-ass5-java.herokuapp.com"
     }
     static get instance() {
         if(!this[singleton])
