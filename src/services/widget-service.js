@@ -17,7 +17,8 @@ class WidgetService {
             {body: JSON.stringify({
                     title: "new heading",
                     type:"HEADING",
-                    size: 1
+                    size: 1,
+                    text: "default, widget, text"
                 }),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'

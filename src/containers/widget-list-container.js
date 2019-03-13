@@ -50,6 +50,17 @@ const dispatchToPropertyMapper = dispatch => ({
             type: 'UPDATE_WIDGET',
             widget: widget
         }),
+    saveWidget: (widgetId, widget) => {
+        let ws = WidgetService.instance
+        ws.updateWidget(widgetId, widget)
+            .then(() => ws.findAllWidgetsForTopic(topId)
+                .then(widgets =>
+                    dispatch({
+                        type: "FIND_ALL_WIDGETS",
+                        widgets: widgets
+                    })
+                ))
+    },
     moveUp: widget =>
         dispatch({
             type: 'MOVE_UP',
